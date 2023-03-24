@@ -35,9 +35,9 @@ public class BoardListener implements MouseListener{
 		
 		for (int i = 0; i <Board.modelBoardSize; i++) {
             for (int j = 0; j < Board.modelBoardSize; j++) {
-        		if(e.getSource() == play.getControllerbordihm().getIhmBoardGame()[i][j] && e.getButton()== 1) {
+        		if(e.getSource() == play.getControllerbordview().getviewBoardGame()[i][j] && e.getButton()== 1) {
         			
-            		if(!play.getControllerbordihm().getIhmBoardGame()[i][j].getSelectedSquare() && play.getControllerbordihm().getIhmBoardGame()[i][j].getIcon() == ImageView.ihmChoiseState) {
+            		if(!play.getControllerbordview().getviewBoardGame()[i][j].getSelectedSquare() && play.getControllerbordview().getviewBoardGame()[i][j].getIcon() == ImageView.viewChoiseState) {
             			try {
             				// le son
 							Sound s = new Sound("move");
@@ -46,8 +46,8 @@ public class BoardListener implements MouseListener{
 							e1.printStackTrace();
 						}
             			// changer l'icon (etat)
-            			if(play.getControllerbordihm().getIhmPlayerPawn() == Pawn.BLACKState && !play.getControllerplayerBlack().isIsComputer()) {
-            				//BoardIHM.ihmBoardGame[i][j].setIcon(StateIHM.ihmBLACKState);
+            			if(play.getControllerbordview().getviewPlayerPawn() == Pawn.BLACKState && !play.getControllerplayerBlack().isIsComputer()) {
+            				//Boardview.viewBoardGame[i][j].setIcon(Stateview.viewBLACKState);
             				
             				// r�cuperer la position de la case
             				// effectuer la mouvement
@@ -56,12 +56,12 @@ public class BoardListener implements MouseListener{
             				play.getControllerplayerBlack().PlayerMove.chageStatesAdvrs(play.getControllerplayerBlack(), play.getControllerplayerWhite(), new Point(i, j), play.getControllerplayBoard());
             				
             				// changer le score
-            				play.getControllerbordihm().ihmNewScore(play.getControllerplayerBlack(), play.getControllerplayerWhite());
+            				play.getControllerbordview().viewNewScore(play.getControllerplayerBlack(), play.getControllerplayerWhite());
             				// induque que le joueur est jou� 
             				play.getControllerplayerBlack().setIsPlayed(true);
             				
-            			}else if (play.getControllerbordihm().getIhmPlayerPawn() == Pawn.WHITEState && !play.getControllerplayerWhite().isIsComputer()) {
-            				//BoardIHM.ihmBoardGame[i][j].setIcon(StateIHM.ihmWHITEState);
+            			}else if (play.getControllerbordview().getviewPlayerPawn() == Pawn.WHITEState && !play.getControllerplayerWhite().isIsComputer()) {
+            				//Boardview.viewBoardGame[i][j].setIcon(Stateview.viewWHITEState);
             				// r�cuperer la position de la case
             				// effectuer la mouvement
             				
@@ -71,7 +71,7 @@ public class BoardListener implements MouseListener{
             				
             					
             				// changer le score
-            				play.getControllerbordihm().ihmNewScore(play.getControllerplayerWhite(), play.getControllerplayerBlack());
+            				play.getControllerbordview().viewNewScore(play.getControllerplayerWhite(), play.getControllerplayerBlack());
             				
             				// induque que le joueur est jou� 
             				play.getControllerplayerWhite().setIsPlayed(true);

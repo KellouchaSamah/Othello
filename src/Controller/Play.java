@@ -7,19 +7,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-import Model.Board;
-import Model.Player;
-import Model.Sound;
-import Strategy.AlphaBetaStrategy;
-import Strategy.MinimaxStrategy;
-import Strategy.RandomStrategy;
-import View.BoardIHM;
-import View.WindowStart;
-import Model.Pawn;
+import Model.*;
+import Strategy.*;
+import View.*;
 
 /**
  * La classe pour creer une partie de jeu 
- * cette classe contient l'IHM et les deux joueurs et le bouard du jeu
+ * cette classe contient l'view et les deux joueurs et le bouard du jeu
  * @author M1 info Rouen (2019/2020)
  * Othello
  */
@@ -33,8 +27,8 @@ public class Play {
 	private Player ControllerplayerWhite;
 	// plateau du jeu
 	private Board  controllerplayBoard;
-	// IHM du jeu 
-	private BoardIHM controllerbordihm;
+	// view du jeu 
+	private BoardView controllerbordview;
 	// verifie si le joueur black est bloqu�
 	private boolean isblockedBlack = false;
 	// verifie si le joueur white est bloqu�
@@ -48,12 +42,12 @@ public class Play {
 	// nombre des coup
 	private int nbrCoup = 0;
 	
-	// # variable pour l'ihm 
-	// ihm playerPawn
+	// # variable pour l'view 
+	// view playerPawn
 	private Pawn playerPawn;
-	// ihm levelGame
+	// view levelGame
 	private String levelGame;
-	// ihm AlgoGame
+	// view AlgoGame
 	private String algoGame;
 	// GameMade 
 	private String gameMade;
@@ -63,7 +57,7 @@ public class Play {
 		this.start = start;
 	}
 	
-	// m�thode permet de cr�er l'ihm et le plateu du jeu 
+	// m�thode permet de cr�er l'view et le plateu du jeu 
 	// et les deux joueurs 
 	public void startGame() throws InterruptedException, IOException {
 		
@@ -74,15 +68,15 @@ public class Play {
     		
 			// cr�er le plateau du jeu 
 			controllerplayBoard = new Board();
-			// creation l'affichage IHM 
-			controllerbordihm = new BoardIHM(controllerplayBoard, this);
-			setProertyBoardIHM();
+			// creation l'affichage view 
+			controllerbordview = new BoardView(controllerplayBoard, this);
+			setProertyBoardview();
 			
 			// creation des joueurs selon le choix 
 			// joueur VS ordi
-			if(controllerbordihm.getIhmGameMade() == "PL vs AI") {
+			if(controllerbordview.getviewGameMade() == "PL vs AI") {
 				// player -> black / ordi -> white
-				if(controllerbordihm.getIhmPlayerPawn() == Pawn.BLACKState) {
+				if(controllerbordview.getviewPlayerPawn() == Pawn.BLACKState) {
 					// creation du joueur 1
 					ControllerplayerBlack = new Player(Pawn.BLACKState, false);
 					// creation le computer 
@@ -97,14 +91,14 @@ public class Play {
 				}	
 			} 
 			// AI vs AI
-			else if (controllerbordihm.getIhmGameMade() == "AI vs AI") {
+			else if (controllerbordview.getviewGameMade() == "AI vs AI") {
 				// creation le computer 
 				ControllerplayerBlack = new Player(Pawn.BLACKState, true);
 				// cr�ation du joueur 1
 				ControllerplayerWhite = new Player(Pawn.WHITEState, true);
 			}
 			// PL vs PL
-			else if (controllerbordihm.getIhmGameMade() == "PL vs PL") {
+			else if (controllerbordview.getviewGameMade() == "PL vs PL") {
 				// creation le joueur 1 
 				ControllerplayerBlack = new Player(Pawn.BLACKState, false);
 				// cr�ation du joueur 2
@@ -116,15 +110,15 @@ public class Play {
 	}
 	
 	// methode permet de mettre � jour les property de la partie
-	public void setProertyBoardIHM() {
+	public void setProertyBoardview() {
 		// le pion choisi par le joueur
-		this.controllerbordihm.setIhmPlayerPawn(this.playerPawn);
+		this.controllerbordview.setviewPlayerPawn(this.playerPawn);
 		// le niveu de la partie
-		this.controllerbordihm.getIhmLevelGame().setText(this.levelGame);
+		this.controllerbordview.getviewLevelGame().setText(this.levelGame);
 		// le mode du jeu
-		this.controllerbordihm.setIhmGameMade(this.gameMade);
+		this.controllerbordview.setviewGameMade(this.gameMade);
 		// l'algorithme utilis� pour la partie
-		this.controllerbordihm.getIhmAlgoGame().setText(this.algoGame);
+		this.controllerbordview.getviewAlgoGame().setText(this.algoGame);
 	}
 	
 	// m�thode permet de alterner entre les deux joueurs
@@ -133,7 +127,7 @@ public class Play {
 		int k;
 		
 		//Démarrer le chrono
-		controllerbordihm.getTimer().start();
+		controllerbordview.getTimer().start();
 		
 		while(!controllerplayBoard.endGame() && (isblockedBlack == false || isblockedWhite == false )){		
 			k = nbrCoup % 2;
@@ -148,17 +142,17 @@ public class Play {
 			if(k == 0) {
 				// System.out.println("joueur " + "Black");
 				
-				controllerbordihm.getIhmTurnPlayer().setText("Black");
+				controllerbordview.getviewTurnPlayer().setText("Black");
 				blackPlayerTurn();
 	
 			}else {
 				// System.out.println("joueur " + "WHITE");
 				
-				controllerbordihm.getIhmTurnPlayer().setText("White");
+				controllerbordview.getviewTurnPlayer().setText("White");
 				whitePlayerTurn();
 			}
 			// restaurer le temps 
-			controllerbordihm.setSeconde(0);
+			controllerbordview.setSeconde(0);
 			nbrCoup++;
 		}
 		
@@ -191,11 +185,11 @@ public class Play {
 	// methode permet de stoper le jeu et gerer les son de la fin du jeu
 	public void stopGame(String msg, Player player) throws IOException {
 		//stoper le chrono
-		controllerbordihm.getTimer().stop();
+		controllerbordview.getTimer().stop();
 		
 		// son
 		Sound sound;
-		if(controllerbordihm.getIhmGameMade() == "PL vs AI"){
+		if(controllerbordview.getviewGameMade() == "PL vs AI"){
 			// le son pour gagner
 			if(!player.isIsComputer()) sound = new Sound("win");
 			// le son pour perdere
@@ -203,7 +197,7 @@ public class Play {
 		}
 				
 		// affichier le message
-		controllerbordihm.ihmWiner(msg);		
+		controllerbordview.viewWiner(msg);		
 	}
 	
 	// algorithme random 
@@ -235,7 +229,7 @@ public class Play {
 		// if non computer 
 		if(!ControllerplayerBlack.isIsComputer()) {
 			// pour alterner entre deux joueurs
-			if (controllerbordihm.getIhmGameMade() == "PL vs PL") controllerbordihm.setIhmPlayerPawn(Pawn.BLACKState);
+			if (controllerbordview.getviewGameMade() == "PL vs PL") controllerbordview.setviewPlayerPawn(Pawn.BLACKState);
 			
 			
 			// indique que le Player n'est en etat de blocage
@@ -245,7 +239,7 @@ public class Play {
 			ArrayList<Point> listPointsBlackMove;
 			listPointsBlackMove = ControllerplayerBlack.PlayerMove.listPointsMovePlayer(ControllerplayerBlack, this.controllerplayBoard);
 				
-			if(listPointsBlackMove.size() != 0) controllerbordihm.ihmUpdatePointsMove(listPointsBlackMove);
+			if(listPointsBlackMove.size() != 0) controllerbordview.viewUpdatePointsMove(listPointsBlackMove);
 			else isblockedBlack = true;
 			
 		}else {
@@ -263,17 +257,17 @@ public class Play {
 				int bestMove = 0;
 				
 				// niveau du jeu 
-				if(controllerbordihm.getIhmAlgoGame().getText().toString() == "RANDOM") {
+				if(controllerbordview.getviewAlgoGame().getText().toString() == "RANDOM") {
 					// indice de la position
 					bestMove = randomALG(listPointsBlackMove);
-				}else if(((controllerbordihm.getIhmAlgoGame().getText().toString() == "MINIMAX")&&(controllerbordihm.getIhmGameMade() == "AI vs AI")) 
-						|| ((controllerbordihm.getIhmAlgoGame().getText().toString() == "MINIMAX")&&(controllerbordihm.getIhmGameMade() != "AI vs AI"))) {
+				}else if(((controllerbordview.getviewAlgoGame().getText().toString() == "MINIMAX")&&(controllerbordview.getviewGameMade() == "AI vs AI")) 
+						|| ((controllerbordview.getviewAlgoGame().getText().toString() == "MINIMAX")&&(controllerbordview.getviewGameMade() != "AI vs AI"))) {
 					// indice de la position
-					bestMove = minimaxALG(controllerplayBoard.getDifficulte(controllerbordihm.getIhmLevelGame().getText()),
+					bestMove = minimaxALG(controllerplayBoard.getDifficulte(controllerbordview.getviewLevelGame().getText()),
 							new Player(ControllerplayerBlack), new Player(ControllerplayerWhite));
-				}else if(controllerbordihm.getIhmAlgoGame().getText().toString() == "ALPHABETA") {
+				}else if(controllerbordview.getviewAlgoGame().getText().toString() == "ALPHABETA") {
 					// indice de la position
-					bestMove = alphabetaALG(controllerplayBoard.getDifficulte(controllerbordihm.getIhmLevelGame().getText()),
+					bestMove = alphabetaALG(controllerplayBoard.getDifficulte(controllerbordview.getviewLevelGame().getText()),
 							new Player(ControllerplayerBlack), new Player(ControllerplayerWhite));
 				}
 				
@@ -298,22 +292,22 @@ public class Play {
 						this.controllerplayBoard);				
 				
 				// changer le score
-				controllerbordihm.ihmNewScore(ControllerplayerBlack, ControllerplayerWhite);	    				
+				controllerbordview.viewNewScore(ControllerplayerBlack, ControllerplayerWhite);	    				
 
 			}else isblockedBlack = true;
 		}
 		
 		if(isblockedBlack == false) {
 	        
-			while(!ControllerplayerBlack.getIsPlayed() && controllerbordihm.getSeconde() < 20) {
+			while(!ControllerplayerBlack.getIsPlayed() && controllerbordview.getSeconde() < 20) {
 				// attendre le palyer de choisir la position
 				// modifier l'affichage et sortir de la boucle
 				
 				// new game 
 				if(Start.newPlay == true) break;
 				
-				// afficher la nouvelle boardIHM
-				controllerbordihm.ihmUpdateDisplay(this.controllerplayBoard);
+				// afficher la nouvelle boardview
+				controllerbordview.viewUpdateDisplay(this.controllerplayBoard);
 				if(ControllerplayerBlack.isIsComputer()) {
 					ControllerplayerBlack.setIsPlayed(true);
 				}
@@ -321,7 +315,7 @@ public class Play {
 			
 			// suprimer les icon des cases de mouvement possibles 
 			if(!ControllerplayerBlack.isIsComputer()) {
-				controllerbordihm.ihmdeletePointsMove();
+				controllerbordview.viewdeletePointsMove();
 			}
 
 			// attendre la prochaine coup
@@ -335,7 +329,7 @@ public class Play {
 		// if non computer 
 		if(!ControllerplayerWhite.isIsComputer()) {
 			// pour alterner entre deux joueurs
-			if (controllerbordihm.getIhmGameMade() == "PL vs PL") controllerbordihm.setIhmPlayerPawn(Pawn.WHITEState);
+			if (controllerbordview.getviewGameMade() == "PL vs PL") controllerbordview.setviewPlayerPawn(Pawn.WHITEState);
 
 			// indique que le Player n'est en etat de blocage
 			isblockedWhite = false; 
@@ -343,8 +337,8 @@ public class Play {
 			// le player r�cuper les position du possible de move
 			ArrayList<Point> listPointsWhiteMove;
 			listPointsWhiteMove = ControllerplayerWhite.PlayerMove.listPointsMovePlayer(ControllerplayerWhite, this.controllerplayBoard);
-			// mettre � jour l'ihm
-			if(listPointsWhiteMove.size() != 0) controllerbordihm.ihmUpdatePointsMove(listPointsWhiteMove);
+			// mettre � jour l'view
+			if(listPointsWhiteMove.size() != 0) controllerbordview.viewUpdatePointsMove(listPointsWhiteMove);
 			else isblockedWhite = true;
 			
 		}else { 
@@ -361,17 +355,17 @@ public class Play {
 				int bestMove = 0;
 				
 				// niveau du jeu 
-				if(controllerbordihm.getIhmAlgoGame().getText().toString() == "RANDOM") {
+				if(controllerbordview.getviewAlgoGame().getText().toString() == "RANDOM") {
 					// indice de la position
 					bestMove = randomALG(listPointsWhiteMove);
-				}else if(controllerbordihm.getIhmAlgoGame().getText().toString() == "MINIMAX") {
+				}else if(controllerbordview.getviewAlgoGame().getText().toString() == "MINIMAX") {
 					// indice de la position
-					bestMove = minimaxALG(controllerplayBoard.getDifficulte(controllerbordihm.getIhmLevelGame().getText()), 
+					bestMove = minimaxALG(controllerplayBoard.getDifficulte(controllerbordview.getviewLevelGame().getText()), 
 							new Player(ControllerplayerWhite), new Player(ControllerplayerBlack));
-				}else if(((controllerbordihm.getIhmAlgoGame().getText().toString() == "ALPHABETA")&&(controllerbordihm.getIhmGameMade() == "AI vs AI"))
-					|| ((controllerbordihm.getIhmAlgoGame().getText().toString() == "ALPHABETA")&&(controllerbordihm.getIhmGameMade() != "AI vs AI"))){
+				}else if(((controllerbordview.getviewAlgoGame().getText().toString() == "ALPHABETA")&&(controllerbordview.getviewGameMade() == "AI vs AI"))
+					|| ((controllerbordview.getviewAlgoGame().getText().toString() == "ALPHABETA")&&(controllerbordview.getviewGameMade() != "AI vs AI"))){
 					// indice de la position
-					bestMove = alphabetaALG(controllerplayBoard.getDifficulte(controllerbordihm.getIhmLevelGame().getText()), 
+					bestMove = alphabetaALG(controllerplayBoard.getDifficulte(controllerbordview.getviewLevelGame().getText()), 
 							new Player(ControllerplayerWhite), new Player(ControllerplayerBlack));
 				}
 				
@@ -396,14 +390,14 @@ public class Play {
 						this.controllerplayBoard);
 								
 				// changer le score
-				controllerbordihm.ihmNewScore(ControllerplayerWhite, ControllerplayerBlack);
+				controllerbordview.viewNewScore(ControllerplayerWhite, ControllerplayerBlack);
 			
 			}else isblockedWhite = true;	
 		}
 
 		if(isblockedWhite == false) {
 
-			while(!ControllerplayerWhite.getIsPlayed() && controllerbordihm.getSeconde() < 20 ) {
+			while(!ControllerplayerWhite.getIsPlayed() && controllerbordview.getSeconde() < 20 ) {
 				// attendre le palyer de choisir la position
 				// modifier l'affichage et sortir de la boucle
 
@@ -413,8 +407,8 @@ public class Play {
 				if(Start.newPlay == true) break;
 				
 				// induque que le joueur est jou� 
-				// afficher la nouvelle boardIHM
-				controllerbordihm.ihmUpdateDisplay(this.controllerplayBoard);
+				// afficher la nouvelle boardview
+				controllerbordview.viewUpdateDisplay(this.controllerplayBoard);
 				if(ControllerplayerWhite.isIsComputer()) {
 					ControllerplayerWhite.setIsPlayed(true);
 				}
@@ -422,7 +416,7 @@ public class Play {
 			
 			// suprimer les icon des cases de mouvement possibles 
 			if(!ControllerplayerWhite.isIsComputer()) {
-				controllerbordihm.ihmdeletePointsMove();
+				controllerbordview.viewdeletePointsMove();
 			}
 			// attendre la prochaine coup
 			ControllerplayerWhite.setIsPlayed(false);
@@ -484,12 +478,12 @@ public class Play {
 		this.controllerplayBoard = controllerplayBoard;
 	}
 
-	public BoardIHM getControllerbordihm() {
-		return controllerbordihm;
+	public BoardView getControllerbordview() {
+		return controllerbordview;
 	}
 
-	public void setControllerbordihm(BoardIHM controllerbordihm) {
-		this.controllerbordihm = controllerbordihm;
+	public void setControllerbordview(BoardView controllerbordview) {
+		this.controllerbordview = controllerbordview;
 	}
 
 	public Pawn getPlayerPawn() {

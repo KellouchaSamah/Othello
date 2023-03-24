@@ -36,7 +36,7 @@ public class WindowStart extends JDialog  {
 	  public WindowStart(JFrame parent, String title, boolean modal, Play play){
 	    super(parent, title, modal);
 	    this.play = play;
-	    this.setSize(500, 220);
+	    this.setSize(500, 250);
 	    this.setLocationRelativeTo(null);
 	    this.setResizable(false);
 	    this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);

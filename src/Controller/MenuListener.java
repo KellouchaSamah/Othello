@@ -23,19 +23,19 @@ public class MenuListener implements MouseListener{
 	public void mouseClicked(MouseEvent e) {
 	}
 	
-	// methode permer de gerer la menu cliqué 
+	// methode permer de gerer la menu cliquï¿½ 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// le menu help
-		if(e.getSource() == this.play.getControllerbordihm().getIhmMenuHelp()) {
+		if(e.getSource() == this.play.getControllerbordview().getviewMenuHelp()) {
 			try {
 				
 				// stoper le time
-				this.play.getControllerbordihm().getTimer().stop();
+				this.play.getControllerbordview().getTimer().stop();
                // pauser le jeu 
 				this.play.getStart().suspend();
 	           // affichere le help  
-               this.play.getControllerbordihm().ihmHelpfortheGame();
+               this.play.getControllerbordview().viewHelpfortheGame();
 				
 			} catch (IOException e1) {
 				e1.printStackTrace();
@@ -44,14 +44,14 @@ public class MenuListener implements MouseListener{
 		}
 		
 		// le menu rules
-		else if(e.getSource() == this.play.getControllerbordihm().getIhmMenuRules()) {
+		else if(e.getSource() == this.play.getControllerbordview().getviewMenuRules()) {
 			try {
 				// stoper le time
-				this.play.getControllerbordihm().getTimer().stop();
+				this.play.getControllerbordview().getTimer().stop();
                // pauser le jeu 
 				this.play.getStart().suspend();
                // afficher les regles du jeu
-               this.play.getControllerbordihm().ihmRulesoftheGame();
+               this.play.getControllerbordview().viewRulesoftheGame();
                
 			} catch (IOException e1) {
 				e1.printStackTrace();

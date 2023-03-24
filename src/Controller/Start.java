@@ -21,7 +21,7 @@ public class Start extends Thread{
 	public void newGame() throws InterruptedException, IOException {
 		
 		// fermer la fenetre d'affichage 
-		play.getControllerbordihm().dispose();
+		play.getControllerbordview().dispose();
 		this.stop();
 		// creer une nouvelle partie
 		Start.main(null);
