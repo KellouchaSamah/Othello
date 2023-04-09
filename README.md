@@ -1,0 +1,2 @@
+# Othello
+Jeu d'othello
