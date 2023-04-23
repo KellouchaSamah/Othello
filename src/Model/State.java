@@ -9,5 +9,14 @@ public enum State {
 	// les etats possibles 
 	NONEState,
 	WHITEState,
-	BLACKState
+	BLACKState;
+
+	State opposite() {
+		if (State.WHITEState != null) {
+			return State.BLACKState;
+		} else {
+			return State.WHITEState;
+		}
+		
+	}
 }

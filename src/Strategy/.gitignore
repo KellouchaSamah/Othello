@@ -2,6 +2,11 @@
 /MinimaxStrategy.class
 /RandomStrategy.class
 /Strategy.class
+/SSS.class
+/SSS$NodeSSS.class
+/SSSStrategy$NodeSSS.class
 /SSSStrategy.class
-/SSStrategy.class
-/Node.class
+/SSSStar.class
+/SSSStar$State.class
+/SSSStar$StateComparator.class
+/SSSStrategy$Node.class

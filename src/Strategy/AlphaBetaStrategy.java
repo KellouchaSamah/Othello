@@ -1,7 +1,6 @@
 package Strategy;
 
 import java.awt.Point;
-
 import java.util.ArrayList;
 
 import Controller.Play;

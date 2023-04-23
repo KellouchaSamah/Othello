@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.ArrayList;
+
 /**
  * La classe permet modeliser le plateau du jeu
  * @author M1 info Rouen (2019/2020)
@@ -78,8 +80,8 @@ public class Board {
 		}else return Pawn.NONEState; 
 	}
 	
-	// methode permet recuperer le profondeur � 
-	// utilis� selon la difficult� du partie
+	// methode permet recuperer le profondeur � 
+	// utilis� selon la difficult� du partie
 	public int getDifficulte(String difficult) {
 		
 		if(difficult == "EASY") {
@@ -92,7 +94,7 @@ public class Board {
 		return 0;
 	}
 	
-	// m�thode permet de verifier si le jeu est termin� ou non
+	// m�thode permet de verifier si le jeu est termin� ou non
 	public boolean endGame(){
 		Boolean existCaseNULL = false;
 		
@@ -109,5 +111,71 @@ public class Board {
 			return true ;
 		}else return false ;
 	}
+
+	public ArrayList<Board> getSuccessors(Player player) {
+	    ArrayList<Board> successors = new ArrayList<>();
+	    // boucler sur toutes les cases du plateau
+	    for (int i = 0; i < Board.modelBoardSize; i++) {
+	        for (int j = 0; j < Board.modelBoardSize; j++) {
+	            Square square = modelBoardSqures[i][j];
+	            // si la case est vide
+	            if (square.getSquareState() == State.NONEState) {
+	                // vérifier si le joueur peut jouer dans cette case
+	                if (player.getIsPlayed()) {
+	                    // créer un nouveau plateau et jouer dans cette case
+	                    Board newBoard = new Board(this);
+	                    newBoard.play(i, j, player.getPawn());
+	                    successors.add(newBoard);
+	                }
+	            }
+	        }
+	    }
+	    return successors;
+	}
+	public void play(int i, int j, Pawn pawn) {
+	    State playerState = pawn.getPlayerState();
+	     modelBoardSqures[i][j].setSquareState(playerState);
+
+	    // parcours des directions à partir de la case jouée
+	    for(Direction dir : Direction.values()) {
+	        int ii = i + dir.i; // i de départ de la direction
+	        int jj = j + dir.j; // j de départ de la direction
+	        boolean validSequence = false; // indique si une séquence valide a été trouvée
+
+	        // recherche de la première case de la séquence
+	        while(isInsideBoard(ii, jj) && modelBoardSqures[ii][jj].getSquareState() == playerState.opposite()) {
+	            ii += dir.i;
+	            jj += dir.j;
+	        }
+
+	        // si la première case trouvée est d'une couleur différente de celle du joueur, on cherche une séquence valide
+	        if(isInsideBoard(ii, jj) && modelBoardSqures[ii][jj].getSquareState() == playerState) {
+	            validSequence = true;
+
+	            // parcours des cases de la direction pour vérifier si la séquence est valide
+	            while(ii != i || jj != j) {
+	                ii -= dir.i;
+	                jj -= dir.j;
+	                if(modelBoardSqures[ii][jj].getSquareState() == playerState.opposite()) {
+	                    modelBoardSqures[ii][jj].setSquareState(playerState);
+	                } else {
+	                    validSequence = false;
+	                    break;
+	                }
+	            }
+	        }
+
+	        // si aucune séquence valide n'a été trouvée dans cette direction, on ne fait rien
+	        if(!validSequence) {
+	            continue;
+	        }
+	    }
+	    
+	}
+
+	private boolean isInsideBoard(int i, int j) {
+	    return i >= 0 && i < modelBoardSize && j >= 0 && j < modelBoardSize;
+	}
+
 }
 

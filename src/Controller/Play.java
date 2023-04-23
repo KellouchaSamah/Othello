@@ -223,6 +223,14 @@ public class Play {
 		return alphabetaSTG.bestMove;
 	}
 	
+	// algorithme SSS*
+	private int sssALG(int difficulte, Player player, Player playerADV) {
+		//choisir al�atoiremet une position SSS*
+		SSSStrategy sssSTG = new SSSStrategy(controllerplayBoard, difficulte, player, playerADV);
+		sssSTG.executeAlgo();
+		return sssSTG.bestMove;
+	}
+	
 	// joueur noir
 	private void blackPlayerTurn() throws InterruptedException {
 		
@@ -269,6 +277,12 @@ public class Play {
 					// indice de la position
 					bestMove = alphabetaALG(controllerplayBoard.getDifficulte(controllerbordview.getviewLevelGame().getText()),
 							new Player(ControllerplayerBlack), new Player(ControllerplayerWhite));
+				}else {
+					if(controllerbordview.getviewAlgoGame().getText().toString() == "SSS*") {
+						// indice de la position
+						bestMove = sssALG(controllerplayBoard.getDifficulte(controllerbordview.getviewLevelGame().getText()),
+								new Player(ControllerplayerBlack), new Player(ControllerplayerWhite));
+					}
 				}
 				
 				// attendre 2 secondes

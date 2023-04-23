@@ -1,88 +1,152 @@
 package Strategy;
 
-import java.awt.Point;
-
 import java.util.ArrayList;
-
-import Controller.Play;
+import java.util.HashMap;
 import Model.Board;
 import Model.Player;
 
 /**
- * La classe permet d'implementer l'algorithme alphabeta
- * @author M1 info Rouen (2019/2020)
- * Othello
+ * Classe modélisant le joueur de l'IA en basant sur l'algorithme SSS*
+ *
  */
-public class SSSStrategy extends Strategy{
+public class SSSStrategy extends Strategy {
 
-	// la partie
-	private Play play;
+	// La HashMap contenant les noeuds déjà visités.
+	private HashMap<Board, Node> nodes;
 	
-	// __construct
-	public public SSSStrategy(Board boardC, int difficulte, Player player, Player playerADV, Play play){
-		super(boardC, difficulte, player, playerADV);
-		this.play = play;
+	// La liste contenant le chemin actuel.
+	private ArrayList<Board> currentPath;
+	
+	// Le noeud actuel.
+	private Node current;
+	
+	// La profondeur de recherche maximale.
+	private int threshold;
+
+	// Constructeur de la classe SSSStrategy.
+	public SSSStrategy(Board boardC, int difficulte, Player player, Player playerADV) {
+	    super(boardC, difficulte, player, playerADV);
+	    
+	    // Initialisation de la HashMap et de la liste.
+	    nodes = new HashMap<>();
+	    currentPath = new ArrayList<>();
 	}
-	
-	// methode permet d'excuter l'algo
+
 	@Override
 	public int executeAlgo() {
-		int alpha = Integer.MIN_VALUE;
-		int beta = Integer.MAX_VALUE;
-		
-		return (int) sssStar(this.player, this.board, new Point(), 0);
-	}
-	
-	//int alphabêta(int depth, int alpha, int bêta)
-	public double sssStar(Player p, Board board, Point point, int depth) {
-	    // La fonction sssStar prend en paramètres un joueur, un plateau, un point représentant le dernier coup joué et une profondeur de recherche.
-
-	    if (board.endGame() || depth == 0) {
-	       // Si le point est un état terminal ou si la profondeur maximale est atteinte, renvoyer la valeur d'évaluation du plateau pour le joueur actuel.
-	    	
-	        return eval(point, listPointsMove.size(), nbPawn, play);
-	    }
-
-	    if (p.getPawn() == this.player.getPawn()) {
-	        // Si le joueur actuel est un joueur Max, chercher le coup optimal parmi les coups valides.
-	        double maxValue = Double.NEGATIVE_INFINITY;
-	        for (Point child : board.getValidMoves()) {
-	            // Pour chaque coup valide, faire le mouvement sur le plateau, appeler la fonction sssStar sur l'adversaire, puis annuler le mouvement pour revenir à l'état précédent.
-	            board.makeMove(p, child);
-	            double value = sssStar(p.getOpponent(), board, child, depth - 1);
-	            board.undoMove(p, child);
-
-	            // Mettre à jour la valeur maximale.
-	            maxValue = Math.max(maxValue, value);
+	    // Création du premier noeud.
+	    current = new Node(null, board, 0, 0, Integer.MAX_VALUE);
+	    
+	    // Ajout du premier noeud dans la HashMap.
+	    nodes.put(board, current);
+	    
+	    while (true) {
+	        // Recherche du meilleur résultat possible pour le joueur.
+	        int result = search(current, 0);
+	        
+	        if (result >= current.threshold) {
+	            // La recherche a été coupée.
+	            current.threshold = result;
+	        } else if (result == Integer.MIN_VALUE) {
+	            // La recherche a échoué.
+	            return current.bestValue;
+	        } else {
+	            // La recherche a réussi.
+	            current.bestValue = result;
+	            current.threshold = result - 1;
 	        }
+	    }
+	}
 
-	        return maxValue;
+	// Fonction récursive de recherche.
+	private int search(Node node, int depth) {
+	    // Ajout du noeud courant dans la liste.
+	    currentPath.set(depth, node.board);
+	    
+	    // Si le jeu est terminé ou si la profondeur maximale est atteinte, on retourne le résultat.
+	    if (node.board.endGame() || depth == difficulte) {
+	        return eval(node);
+	    }
+	    
+	    // Si le noeud n'a pas d'enfants, on les crée.
+	    if (node.children == null) {
+	        expand(node);
+	    }
+	    
+	    // Si le noeud n'a pas d'enfants, c'est une feuille.
+	    if (node.children.isEmpty()) {
+	        return Integer.MAX_VALUE;
+	    }
+	    
+	    // Recherche récursive des enfants du noeud courant.
+	    int value = Integer.MIN_VALUE;
+	    for (Node child : node.children) {
+	        int result = search(child, depth + 1);
+	        
+	        // Si le résultat est meilleur que le précédent, on le remplace.
+	        if (result > value) {
+	            value = result;
+	        }
+	        
+	        // Si la valeur est supérieure ou égale à la threshold, on retourne la valeur courante.
+	        if (value >= node.threshold) {
+	            return value;
+	        }
+	    }
+	    
+	    // On retourne la meilleure valeur trouvée.
+	    return value;
+	}
+
+	// Fonction permettant de créer les enfants du noeud courant.
+	private void expand(Node node) {
+	    // Obtention des coups possibles.
+	    ArrayList<Board> boards = node.board.getSuccessors(player);
+	    
+	 // Si la liste de plateaux de jeu successifs est vide, alors le noeud n'a pas d'enfants, donc c'est une feuille.
+	    if (boards.isEmpty()) {
+	    return; // on retourne immédiatement pour sortir de la fonction.
+	    }
+	    // Création d'une nouvelle liste d'enfants de la taille de la liste de plateaux successifs.
+	    node.children = new ArrayList<>(boards.size());
+	    // Pour chaque plateau de jeu successif, on crée un nouveau noeud enfant.
+	    for (Board board : boards) {
+	    Node child = nodes.get(board);
+	    // Si le plateau n'a pas encore été exploré, on crée un nouveau noeud enfant avec des valeurs initiales.
+	    if (child == null) {
+	    child = new Node(node, board, node.depth + 1, Integer.MAX_VALUE, node.threshold);
+	    nodes.put(board, child); // on ajoute le nouveau noeud à la HashMap des noeuds explorés.
 	    } else {
-	        // Si le joueur actuel est un joueur Min, chercher le coup qui minimise le score du joueur Max.
-	        double minValue = Double.POSITIVE_INFINITY;
-	        for (Point child : board.getValidMoves()) {
-	            // Pour chaque coup valide, faire le mouvement sur le plateau, appeler la fonction sssStar sur l'adversaire, puis annuler le mouvement pour revenir à l'état précédent.
-	            board.makeMove(p, child);
-	            double value = sssStar(p.getOpponent(), board, child, depth - 1);
-	            board.undoMove(p, child);
-
-	            // Mettre à jour la valeur minimale.
-	            minValue = Math.min(minValue, value);
-	        }
-
-	        return minValue;
+	    // Si le plateau a déjà été exploré, on réutilise le noeud enfant existant en mettant à jour ses valeurs.
+	    child.parent = node;
+	    child.depth = node.depth + 1;
+	    }
+	    node.children.add(child); // on ajoute le nouveau noeud enfant à la liste d'enfants du noeud parent actuel.
 	    }
 	}
+	    // Fonction d'évaluation d'un noeud.
+	    private int eval(Node node) {
+	    return threshold; // retourne la valeur de la variable threshold définie dans la classe.
+	    }
+	
+	    // Classe interne représentant un noeud dans l'algorithme SSS*.
+	    private static class Node {
+	    Node parent; // le noeud parent
+	    ArrayList<Node> children; // la liste des noeuds enfants
+	    Board board; // le plateau de jeu associé au noeud
+	    int depth; // la profondeur du noeud dans l'arbre de recherche
+	    int bestValue; // la meilleure valeur de tous les descendants du noeud
+	    int threshold; // la valeur seuil pour la recherche en cours
 
-	
-	
-	// # getter et setter
-		public Play getPlay() {
-			return play;
+	    Node(Node parent, Board board, int depth, int bestValue, int threshold) {
+	        this.parent = parent;
+	        this.board = board;
+	        this.depth = depth;
+	        this.bestValue = bestValue;
+	        this.threshold = threshold;
+	        this.children = null; // la liste des enfants est initialisée à null au départ.
+	    }
 		}
 
-		public void setPlay(Play play) {
-			this.play = play;
-		}	
-}
-	
+	}    
+

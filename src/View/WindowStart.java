@@ -101,6 +101,7 @@ public class WindowStart extends JDialog  {
 	    algo.addItem("RANDOM");
 	    algo.addItem("MINIMAX");
 	    algo.addItem("ALPHABETA");
+	    algo.addItem("SSS*");
 //////////////////////////////////////////////////////////you will add others algo///////////////////////////////////////////////////////////////////////////////
 	    algoLabel = new JLabel("Algo : ");
 	    panAlgo.add(algoLabel);

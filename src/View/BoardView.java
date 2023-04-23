@@ -20,8 +20,7 @@ import Model.State;
 
 public class BoardView extends JFrame {
 
-    // #sérial 
-	private static final long serialVersionUID = 1L;
+   
 	// #chrono 
 	public ActionListener tacheTIMER;
 	private int delais = 1000;
@@ -36,7 +35,7 @@ public class BoardView extends JFrame {
 	
 	// #panel de footer
     // d�claration le panel 
-    private Box viewPanelFooter    = Box.createHorizontalBox();
+    private Box viewPanelFooter = Box.createHorizontalBox();
     private JLabel viewLabelFooter = new JLabel("Groupe M1 INFO @ROUEN");
 
     //  
@@ -444,7 +443,7 @@ public class BoardView extends JFrame {
             }
         });
         
-        // listener pour quitterle jeu
+        // listener pour quitter le jeu
         viewMenuExit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
             	timer.stop();

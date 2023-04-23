@@ -6,7 +6,19 @@ package Model;
  * Othello
  */
 public enum Pawn {
+
 	BLACKState,
 	WHITEState,
-	NONEState
+	NONEState;
+
+	public State getPlayerState() {
+		if (this == BLACKState) {
+			return State.BLACKState;
+		} else if (this == WHITEState) {
+			return State.WHITEState;
+		} else {
+			return State.NONEState;
+		}
+	}
 }
+
