@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+C:\Users\cashc\OneDrive\Bureau\Semstre 2\Théorie-des-jeux\Projet\Othello\.metadata\.plugins\org.eclipse.jdt.core
+1865797976.index
+1067094681.index
+1311624313.index
