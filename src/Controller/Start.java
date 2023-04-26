@@ -22,7 +22,7 @@ public class Start extends Thread{
 		
 		// fermer la fenetre d'affichage 
 		play.getControllerbordview().dispose();
-		this.stop();
+		this.interrupt();
 		// creer une nouvelle partie
 		Start.main(null);
 	}
