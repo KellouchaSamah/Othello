@@ -8,20 +8,13 @@ import Model.Pawn;
 import Model.Player;
 import Model.State;
 
-/**
- * La classe permet aux joueurs d'effectuer les mouvements
- * @author M1 info Rouen (2019/2020)
- * Othello
- */
 public class Move {
 	
-	// methode permet de récuperer les positions du joueur
 	public ArrayList<Point> ControllerPointsPlayer(Player player, Board board){
 		ArrayList<Point> pointsPlayer = new ArrayList<Point>();
 		
 		for(int i = 0; i < Board.modelBoardSize; i++) {
 			for(int j = 0; j < Board.modelBoardSize; j++) {
-				//System.out.println(pawn);
 				if(player.getPawn().toString() == board.modelBoardSqures[i][j].getSquareState().toString()) {
 					pointsPlayer.add(new Point(i, j));
 					
@@ -32,17 +25,14 @@ public class Move {
 		return pointsPlayer;
 	}
 	
-	// methode permet de récuperer la liste des position possible de deplacement 
 	public ArrayList<Point> listPointsMovePlayer(Player player, Board board){
 		
 		ArrayList<Point> listPointsPlayer = new ArrayList<Point>();
 		ArrayList<Point> listPointsMovePlayer = new ArrayList<Point>();
 		ArrayList<Point> listALLPointsMovePlayer = new ArrayList<Point>();
 		
-		// récuperer les point des pion existe d'un joueur donné 
 		listPointsPlayer = player.PlayerMove.ControllerPointsPlayer(player, board);
 	
-		// récuperer tous les position possible pour un movement
 		for(int i = 0; i < listPointsPlayer.size(); i++) {
 			
 			listPointsMovePlayer = player.PlayerMove.listPointValidMove(player, listPointsPlayer.get(i), board);
@@ -52,7 +42,6 @@ public class Move {
 		return listALLPointsMovePlayer;
 	}
 	
-	// methode permet de récuperer le pion adversaire
 	public String getPawnAdvers(Pawn pawn){
 		if (pawn == pawn.BLACKState)
 			return pawn.WHITEState.toString();
@@ -61,7 +50,6 @@ public class Move {
 		return null;
 	}
 	
-	// methode permet de récuperer les l'etats des 8 cases    
 	public ArrayList<Point> listPointValidMove(Player player, Point position, Board board){
 		Point pointDirectionvalid;
 		ArrayList<Point> listAllDirection = new ArrayList<Point>();
@@ -69,35 +57,27 @@ public class Move {
 		if (!isValidPosition(position))
 			return listAllDirection;
 
-		// Droit
-		pointDirectionvalid = validPointInDirection(player, position, 1,  0, board);	
+		pointDirectionvalid = validPointInDirection(player, position, 1,  0, board);
 		if(pointDirectionvalid != null) listAllDirection.add(pointDirectionvalid);
-		// Gauche
-		
+
 		pointDirectionvalid = validPointInDirection(player, position, -1,  0, board);
 		if(pointDirectionvalid != null) listAllDirection.add(pointDirectionvalid);
 		
-		// Haut
-		pointDirectionvalid = validPointInDirection(player, position, 0,  1, board);	
+		pointDirectionvalid = validPointInDirection(player, position, 0,  1, board);
 		if(pointDirectionvalid != null) listAllDirection.add(pointDirectionvalid);
 		
-		// Bas
-		pointDirectionvalid = validPointInDirection(player, position, 0,  -1, board);	
+		pointDirectionvalid = validPointInDirection(player, position, 0,  -1, board);
 		if(pointDirectionvalid != null) listAllDirection.add(pointDirectionvalid);
 		
-		// NordEast
-		pointDirectionvalid = validPointInDirection(player, position, 1,  1, board);	
+		pointDirectionvalid = validPointInDirection(player, position, 1,  1, board);
 		if(pointDirectionvalid != null) listAllDirection.add(pointDirectionvalid);
 		
-		//NordWest
-		pointDirectionvalid = validPointInDirection(player, position, 1,  -1, board);	
+		pointDirectionvalid = validPointInDirection(player, position, 1,  -1, board);
 		if(pointDirectionvalid != null) listAllDirection.add(pointDirectionvalid);
 		
-		// SudEast
-		pointDirectionvalid = validPointInDirection(player, position, -1,  1, board);	
+		pointDirectionvalid = validPointInDirection(player, position, -1,  1, board);
 		if(pointDirectionvalid != null) listAllDirection.add(pointDirectionvalid);
 		
-		// SudWest
 		pointDirectionvalid = validPointInDirection(player, position, -1,  -1, board);
 		if(pointDirectionvalid != null) listAllDirection.add(pointDirectionvalid);
 		
@@ -105,21 +85,17 @@ public class Move {
 		
 	}
 		
-	// methode permet de verifier si on est toujours dans le board 
 	public boolean isValidPosition(Point pos){
 		return (pos.x >= 0 && pos.y >= 0 && pos.x < Board.modelBoardSize && pos.y < Board.modelBoardSize);
 	}
 	
-	// methode permet de récupere la colleur de la case 
 	public String StatePosition(Point pos, Board board){
 		return board.modelBoardSqures[pos.x][pos.y].getSquareState().toString();
 	}
 	
-	// methode permet de valider les points pour chaque direction
 	public Point validPointInDirection (Player player, Point position, int xDirection, int yDirection, Board board){
 		Point pos = new Point(position);
 		
-		// récuperer le pion adversaire 
 		String pawnAdv = getPawnAdvers(player.getPawn());
 	
 		pos.x += xDirection;
@@ -143,7 +119,6 @@ public class Move {
 		return null;
 	}
 	
-	// methode permet de choisir du mouvement 
 	public void choiceMove(Board board, Player player, Point position) {
 		
 		if(isValidPosition(position) && board.modelBoardSqures[position.x][position.y].getSquareState() == State.NONEState) {
@@ -151,7 +126,6 @@ public class Move {
 		}
 	}
 	
-	// methode permet de changer les état de joueur adversaire     
 	public boolean chageStatesAdvrs(Player player,Player playeradv,  Point position, Board board){
 		
 		ArrayList<Point> listAllPoints = new ArrayList<Point>();
@@ -159,49 +133,38 @@ public class Move {
 		if (!isValidPosition(position))
 			return false;
 
-		// Droit
-		listAllPoints = listSquarsAdvrs(player, position, 1,  0, board);	
+		listAllPoints = listSquarsAdvrs(player, position, 1,  0, board);
 		if(listAllPoints != null) changeState(player, playeradv, listAllPoints, board);
 		
-		// Gauche
 		listAllPoints = listSquarsAdvrs(player, position, -1,  0, board);
 		if(listAllPoints != null)  changeState(player, playeradv, listAllPoints, board);
 		
-		// Haut
-		listAllPoints = listSquarsAdvrs(player, position, 0,  1, board);	
+		listAllPoints = listSquarsAdvrs(player, position, 0,  1, board);
 		if(listAllPoints != null)  changeState(player, playeradv, listAllPoints, board);
 		
-		// Bas
-		listAllPoints = listSquarsAdvrs(player, position, 0,  -1, board);	
+		listAllPoints = listSquarsAdvrs(player, position, 0,  -1, board);
 		if(listAllPoints!= null)  changeState(player, playeradv, listAllPoints, board);
 		
-		// NordEast
-		listAllPoints = listSquarsAdvrs(player, position, 1,  1, board);	
+		listAllPoints = listSquarsAdvrs(player, position, 1,  1, board);
 		if(listAllPoints != null)  changeState(player, playeradv, listAllPoints, board);
 		
-		// NordWest
-		listAllPoints = listSquarsAdvrs(player, position, 1,  -1, board);	
+		listAllPoints = listSquarsAdvrs(player, position, 1,  -1, board);
 		if(listAllPoints != null)  changeState(player, playeradv, listAllPoints, board);
 		
-		// SudEast
-		listAllPoints = listSquarsAdvrs(player, position, -1,  1, board);	
+		listAllPoints = listSquarsAdvrs(player, position, -1,  1, board);
 		if(listAllPoints != null)  changeState(player, playeradv, listAllPoints, board);
 		
-		// SudWest
 		listAllPoints = listSquarsAdvrs(player, position, -1,  -1, board);
 		if(listAllPoints!= null)  changeState(player, playeradv, listAllPoints, board);
 			
 		return true;
 	}
 	
-	// methode permet de changer l'etat d'une ensemble des cases
 	public void changeState(Player player, Player playeradv, ArrayList<Point> listpoints, Board board) {
 
 		for(int i=0; i< listpoints.size(); i++){
 			if(isValidPosition(listpoints.get(i)) && board.modelBoardSqures[listpoints.get(i).x][listpoints.get(i).y].getSquareState().toString() == getPawnAdvers(player.getPawn())) {
-				// augmenter le score 
 				player.setScore(player.getScore() + 1);
-				// dimuner le score de l'adversaire 
 				playeradv.setScore(playeradv.getScore() - 1);
 
 				board.modelBoardSqures[listpoints.get(i).x][listpoints.get(i).y].setSquareState(Board.convertPawntoState(player.getPawn()));
@@ -209,14 +172,11 @@ public class Move {
 		}
 	}
 		
-	// methode permet de recuperer la liste des cases occupee par le joueur adv
 	public ArrayList<Point> listSquarsAdvrs(Player player, Point position, int xDirection, int yDirection, Board board){
 		ArrayList<Point> listAllPoints = new ArrayList<Point>();
 		
 		Point pos = new Point(position);
-		//ArrayList<Point> listValid = new ArrayList<Point>();
-		
-		// récuperer le pion adversaire 
+
 		String pawnAdv = getPawnAdvers(player.getPawn());
 
 		pos.x += xDirection;

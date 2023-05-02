@@ -11,19 +11,12 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-/**
- * La classe permet de modeliser le son
- * @author M1 info Rouen (2019/2020)
- * Othello
- */
 public class Sound {
 	
 	public Sound(String nameFile) throws FileNotFoundException {
-		// Construction du flux audio à partir d'un fichier
 		AudioInputStream audioInputStream = null;
 		
 		try{
-		 	  //obtention d'un flux audio à partir d'un fichier (objet File)
 		      audioInputStream = AudioSystem.getAudioInputStream(getClass().getResource("/Son/"+nameFile+".wav"));
 
 		    } catch (UnsupportedAudioFileException e1) {
@@ -34,20 +27,12 @@ public class Sound {
 		            return;
 		    }
 		
-		// Récupération du format Audio
-		//Il est nécessaire de connaître le format audio du fichier
-		// d'entrée pour permettre à java de créer l'objet DataLine adéquat
 		 AudioFormat audioFormat = audioInputStream.getFormat();
 		 
-		 // Construction d’un Objet DataLine.Info
-		 // ici le DataLine est un SourceDataLine qui nous permet
-		 // la lecture (targetDataLine permet l'enregistrement).
 
 	    DataLine.Info info = new DataLine.Info(SourceDataLine.class,
 	                audioFormat);
 	  
-	    //  Récupération de l’objet Line
-	    // On récupère le DataLine et on l'ouvre
 	    SourceDataLine line;
 	    try {
 	    line = (SourceDataLine) AudioSystem.getLine(info);
@@ -57,7 +42,6 @@ public class Sound {
 	      return;
 	    }
 	    
-	    // Ouverture de la ligne avec le bon format audio
 	    try {
 	    	line.open(audioFormat);
 	    } catch (LineUnavailableException e3) {
@@ -65,10 +49,8 @@ public class Sound {
 	    		return;
 	    }
 	    
-	    //  Démarrage de la ligne
 	    line.start();
 	    
-	    // Lecture sur le flux entrant et écriture sur la ligne
 	    try {
 	    	byte bytes[] = new byte[2048];
 	    	int bytesRead=0;
@@ -80,7 +62,6 @@ public class Sound {
 	    	return;
 	    }
 	    
-	    // Fermeture de la ligne
 	    line.close();
 	}	
 }

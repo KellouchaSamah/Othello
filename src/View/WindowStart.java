@@ -21,18 +21,15 @@ import Model.Pawn;
 
 public class WindowStart extends JDialog  {
 
-	  /* 
-	   * Label pour pion, niveau, mode, et l'algo du jeu
-	   */
 	  private JLabel  pawnLabel, levelLabel, madeLabel, algoLabel;
 	  private JRadioButton tranche1, tranche2, tranche3, tranche4;
-	  private JComboBox pawn, level, mode, algo;
+	  private JComboBox pawn;
+	private JComboBox level;
+	private JComboBox mode;
+	private JComboBox algo;
 	  private JTextField taille;
-	  /* la partie */
 	  private Play play;
-	  /*
-	   * constructeur
-	   */
+
 	  public WindowStart(JFrame parent, String title, boolean modal, Play play){
 	    super(parent, title, modal);
 	    this.play = play;
@@ -43,14 +40,10 @@ public class WindowStart extends JDialog  {
 	    this.initComponent();
 	  }
 
-	  /*
-	   *  methode permet d'initialiser le dialog
-	   */
+
 	  private void initComponent(){
 	    
-		  /*
-		   *  choix du pion
-		   */
+
 	    JPanel panPawn = new JPanel();
 	    panPawn.setBackground(Color.white);
 	    panPawn.setPreferredSize(new Dimension(220, 60));
@@ -62,9 +55,6 @@ public class WindowStart extends JDialog  {
 	    panPawn.add(pawnLabel);
 	    panPawn.add(pawn);
 
-	    /*
-	     *  choix du niveau du jeu
-	     */
 	    JPanel panLevel = new JPanel();
 	    panLevel.setBackground(Color.white);
 	    panLevel.setPreferredSize(new Dimension(220, 60));
@@ -76,9 +66,7 @@ public class WindowStart extends JDialog  {
 	    levelLabel = new JLabel("Level : ");
 	    panLevel.add(levelLabel);
 	    panLevel.add(level);
-	    /*
-	     *  choix du mode du jeu
-	     */
+
 	    JPanel panMade = new JPanel();
 	    panMade.setBackground(Color.white);
 	    panMade.setPreferredSize(new Dimension(220, 60));
@@ -90,9 +78,7 @@ public class WindowStart extends JDialog  {
 	    madeLabel = new JLabel("Mode : ");
 	    panMade.add(madeLabel);
 	    panMade.add(mode);
-	    /*
-	     *  choix de l'algorithme
-	     */
+
 	    JPanel panAlgo = new JPanel();
 	    panAlgo.setBackground(Color.white);
 	    panAlgo.setPreferredSize(new Dimension(220, 60));
@@ -102,7 +88,6 @@ public class WindowStart extends JDialog  {
 	    algo.addItem("MINIMAX");
 	    algo.addItem("ALPHABETA");
 	    algo.addItem("SSS*");
-//////////////////////////////////////////////////////////you will add others algo///////////////////////////////////////////////////////////////////////////////
 	    algoLabel = new JLabel("Algo : ");
 	    panAlgo.add(algoLabel);
 	    panAlgo.add(algo);
@@ -117,51 +102,36 @@ public class WindowStart extends JDialog  {
 	    JPanel control = new JPanel();
 	    JButton okBoutton = new JButton("PLAY");
 	    
-	    /* Boutton ok */
+
 	    okBoutton.addActionListener(new ActionListener(){
-	    
-	    /*
-	     *  listener pour le boutton ok
-	     */
+
 		public void actionPerformed(ActionEvent e) {
 				
-			/* le joueur faire le choix de son pion */
 	    	Pawn Cpawn = Board.convertStringtoPawn(pawn.getSelectedItem().toString());
 	    	if (Cpawn == null) {
-	    		/* récuperer le pion */
 				play.setPlayerPawn(Pawn.BLACKState);
 	    	}else{
-	    		/* récuperer le pion */
 				play.setPlayerPawn(Cpawn);
 	    	};
 	    	
-	    	/* le joueur faire le choix de niveau du jeu  */
 	    	String CLevel = level.getSelectedItem().toString();
 	    	if (CLevel == null) {
-	    		/* récuperer le level */
 	    		play.setLevelGame("ESAY");
 	    	}else{
-	    		/* récuperer le level */
 	    		play.setLevelGame(CLevel);
 	    	};
 	    	
-	    	/* le joueur faire le choix de l'algorithme */
 	    	String CAlgo = algo.getSelectedItem().toString();
 	    	if (CAlgo == null) {
-	    		/* récuperer le level  */
 	    		play.setAlgoGame("RANDOM");
 	    	}else{
-	    		/* récuperer le level  */
 	    		play.setAlgoGame(CAlgo);
 	    	};
 	    				
-	    	/* le joueur faire le choix de mode du jeu */ 
 	    	String Cmade = mode.getSelectedItem().toString();
 	    	if (Cmade == null) {
-	    		/* récuperer le mode */
 	    		play.setGameMade("PL VS AI");
 	    	}else{
-	    		/* récuperer le mode */
 	    		play.setGameMade(Cmade);
 	    	};
 			
@@ -169,9 +139,7 @@ public class WindowStart extends JDialog  {
 		}      
 	    });
 
-	    /* Boutton back*/
 	    JButton cancelBouton = new JButton("BACK");
-	    /* listener pour le boutton back*/
 	    cancelBouton.addActionListener(new ActionListener(){
 	      public void actionPerformed(ActionEvent e) {
 		    	setVisible(false);
@@ -185,7 +153,6 @@ public class WindowStart extends JDialog  {
 	    this.getContentPane().add(control, BorderLayout.SOUTH);
 	  }
 
-	/* l'ensemble des getter et setter*/
 	public Play getPlay() {
 		return play;
 	}
