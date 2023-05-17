@@ -36,15 +36,20 @@ public class Play {
 	
 	public void startGame() throws InterruptedException, IOException {
 		
-		WindowStart id = new WindowStart(null, "Match Settings", true, this);
-    	id.show(true);  	
-    	
+		WindowStart id = new WindowStart(null, "OTHELLO GAME 2022/2023", true, this);
+    	id.show(true);
+		System.out.println(this.getPlayerPawn());
+		System.out.println(this.getAlgoGame());
+		System.out.println(this.getGameMade());
+		System.out.println(this.getLevelGame());
     	if(this.playerPawn != null){
     		
 			controllerplayBoard = new Board();
 			controllerbordview = new BoardView(controllerplayBoard, this);
 			setProertyBoardview();
-			
+
+			System.out.println(controllerbordview.getviewGameMade());
+
 			if(controllerbordview.getviewGameMade() == "PL vs AI") {
 				if(controllerbordview.getviewPlayerPawn() == Pawn.BLACKState) {
 					ControllerplayerBlack = new Player(Pawn.BLACKState, false);
@@ -60,14 +65,19 @@ public class Play {
 				ControllerplayerWhite = new Player(Pawn.WHITEState, true);
 			}
 			else if (controllerbordview.getviewGameMade() == "PL vs PL") {
+                System.out.println("PL vs PL : i entered ");
 				ControllerplayerBlack = new Player(Pawn.BLACKState, false);
 				ControllerplayerWhite = new Player(Pawn.WHITEState, false);
+				System.out.println(ControllerplayerBlack);
+
 			}
 			playersTurn();
     	}
 	}
 	
 	public void setProertyBoardview() {
+		System.out.println("i entered to setPropertyBoardView");
+
 		this.controllerbordview.setviewPlayerPawn(this.playerPawn);
 		this.controllerbordview.getviewLevelGame().setText(this.levelGame);
 		this.controllerbordview.setviewGameMade(this.gameMade);
@@ -109,10 +119,10 @@ public class Play {
 			playendGame = true;
 			
 			if(ControllerplayerWhite.getScore() < ControllerplayerBlack.getScore()) {
-				stopGame("Le joueur Black a gagn�", ControllerplayerBlack);
+				stopGame("Le joueur Black a gagné", ControllerplayerBlack);
 				
 			}else if(ControllerplayerWhite.getScore() > ControllerplayerBlack.getScore()) {
-				stopGame("Le joueur WHite a gagn�", ControllerplayerWhite);
+				stopGame("Le joueur WHite a gagné", ControllerplayerWhite);
 			}else {
 				stopGame("partie null", null);
 			}

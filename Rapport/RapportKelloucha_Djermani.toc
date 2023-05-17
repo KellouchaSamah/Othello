@@ -1,0 +1,12 @@
+\babel@toc {french}{}\relax 
+\contentsline {section}{\numberline {1}Introduction}{4}{}%
+\contentsline {section}{\numberline {2}Travail demandé}{5}{}%
+\contentsline {subsection}{\numberline {2.1}Les règles de jeu Othello}{5}{}%
+\contentsline {subsection}{\numberline {2.2}Les Algorithmes demandés}{5}{}%
+\contentsline {paragraph}{Min-Max :}{5}{}%
+\contentsline {paragraph}{Alpha-Beta :}{5}{}%
+\contentsline {paragraph}{ NégaAlphaBeta : }{5}{}%
+\contentsline {paragraph}{SSS* :}{6}{}%
+\contentsline {paragraph}{ A* :}{6}{}%
+\contentsline {section}{\numberline {3}Étapes suivis pour la réalisation du projet}{6}{}%
+\contentsline {section}{\numberline {4}Conclusion}{6}{}%
