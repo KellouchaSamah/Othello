@@ -163,8 +163,12 @@ public class Play {
 		return alphabetaSTG.bestMove;
 	}
 
-	
 
+	private int negamaxALG(int difficulte, Player player, Player playerADV) {
+		NegaMAXStrategy negamaxSTG = new NegaMAXStrategy(controllerplayBoard, difficulte, player, playerADV, this);
+		negamaxSTG.executeAlgo();
+		return negamaxSTG.bestMove;
+	}
 
 	private int sssALG(int difficulte, Player player, Player playerADV) {
 		SSSStrategy sssSTG = new SSSStrategy(controllerplayBoard, difficulte, player, playerADV);
@@ -209,7 +213,13 @@ public class Play {
 					if(controllerbordview.getviewAlgoGame().getText().toString() == "SSS*") {
 						bestMove = sssALG(controllerplayBoard.getDifficulte(controllerbordview.getviewLevelGame().getText()),
 								new Player(ControllerplayerBlack), new Player(ControllerplayerWhite));
+					}else {
+						if (controllerbordview.getviewAlgoGame().getText().toString() == "NEGAMAX") {
+							bestMove = negamaxALG(controllerplayBoard.getDifficulte(controllerbordview.getviewLevelGame().getText()),
+									new Player(ControllerplayerBlack),new Player(ControllerplayerWhite));
+						}
 					}
+
 				}
 				
 				Thread.sleep(2000) ;

@@ -6,12 +6,12 @@ import Controller.Play;
 import Model.Board;
 import Model.Player;
 
-public class NegaMAX extends Strategy{
+public class NegaMAXStrategy extends Strategy{
 
     // la partie
     private Play play;
     // __construct
-    public NegaMAX(Board boardC, int difficulte, Player player, Player playerADV, Play play){
+    public NegaMAXStrategy(Board boardC, int difficulte, Player player, Player playerADV, Play play){
         super(boardC, difficulte, player, playerADV);
         this.play = play;
     }
