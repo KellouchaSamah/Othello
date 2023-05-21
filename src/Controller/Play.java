@@ -162,7 +162,10 @@ public class Play {
 		alphabetaSTG.executeAlgo();
 		return alphabetaSTG.bestMove;
 	}
+
 	
+
+
 	private int sssALG(int difficulte, Player player, Player playerADV) {
 		SSSStrategy sssSTG = new SSSStrategy(controllerplayBoard, difficulte, player, playerADV);
 		sssSTG.executeAlgo();

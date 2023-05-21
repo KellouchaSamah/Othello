@@ -32,6 +32,7 @@ public class WindowStart extends JDialog {
 		this.setSize(550, 250);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
+		//this.setBackground(Color.pink);
 		this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		this.initComponent();
 	}
@@ -91,6 +92,7 @@ public class WindowStart extends JDialog {
 		minimax.setBackground(Color.white);
 		alphabeta.setBackground(Color.white);
 		sss.setBackground(Color.white);
+		A.setBackground(Color.white);
 		panAlgo.add(random);
 		panAlgo.add(minimax);
 		panAlgo.add(alphabeta);

@@ -73,23 +73,21 @@ public class BoardView extends JFrame {
         
         viewLayoutGame = new GridLayout(Board.modelBoardSize, Board.modelBoardSize);
         this.viewPanelGame.setLayout(viewLayoutGame);
-        this.viewPanelGame.setBorder(BorderFactory.createEtchedBorder(Color.white, new Color(156, 156, 156)));
+        this.viewPanelGame.setBorder(BorderFactory.createEtchedBorder(Color.white, new Color(16, 239, 28)));
         
         this.viewSizePanelGame = Board.modelBoardSize * 70 + 60;
         this.viewPanelGame.setPreferredSize(new Dimension(viewSizePanelGame, viewSizePanelGame));
         this.viewBoardGame = new SquareView[Board.modelBoardSize][Board.modelBoardSize];
 
         creatviewPanelScoreTime();
-        this.getContentPane().add(viewPanelScoreTime, BorderLayout.EAST);
+        this.getContentPane().add(viewPanelScoreTime, BorderLayout.WEST);
         
         creatviewBoardGame(board);
         this.getContentPane().add(viewPanelGame, BorderLayout.CENTER);
         
         createviewMenu();
-        this.getContentPane().add(viewMenuBar, BorderLayout.NORTH);
-        
-        creatviewFooter();
-        this.getContentPane().add(viewPanelFooter, BorderLayout.SOUTH);
+        this.getContentPane().add(viewMenuBar, BorderLayout.SOUTH);
+
             
         this.setTitle("Notre Othello Rouen");
         this.viewPanelGame.setMinimumSize(new Dimension(viewSizePanelGame + 6, viewSizePanelGame + 25));
@@ -194,8 +192,8 @@ public class BoardView extends JFrame {
     	
     	viewLabelFooter.setForeground(Color.WHITE);
     	viewPanelFooter.setOpaque(true);
-    	this.viewPanelFooter.setBackground(new Color(102,51,0));
-    	Border viewBorderPanelGame = BorderFactory.createLineBorder(new Color(102,51,0), 10);
+    	this.viewPanelFooter.setBackground(new Color(16, 239, 28));
+    	Border viewBorderPanelGame = BorderFactory.createLineBorder(new Color(16, 239, 28), 10);
         this.viewPanelFooter.setBorder(viewBorderPanelGame);
     }
     
@@ -224,7 +222,7 @@ public class BoardView extends JFrame {
     	viewBoxMoveDuration.add(viewLabelMoveDuration);
     	viewBoxMoveDuration.add(Box.createHorizontalStrut(5));
     	viewBoxTime.add(time);
-    	viewBoxMoveDuration.setBackground(new Color(102,51,0));
+    	viewBoxMoveDuration.setBackground(new Color(16, 239, 28));
     	
     	viewBoxBlack.add(viewIconPlayerBlack);
     	viewBoxBlack.add(Box.createHorizontalStrut(18));
@@ -256,15 +254,15 @@ public class BoardView extends JFrame {
     	viewBox.add(viewBoxBlack);
     	viewBox.add(Box.createVerticalStrut(150));
     	
-    	Border viewBorderPanelGame = BorderFactory.createLineBorder(new Color(1,133,94), 1);
+    	Border viewBorderPanelGame = BorderFactory.createLineBorder(new Color(105, 4, 4), 1);
     	viewBoxAlgoGame.setBorder(viewBorderPanelGame);
     	viewPanelScoreTime.add(viewBox);
     	viewPanelScoreTime.add(viewBoxMoveDuration);
     	viewPanelScoreTime.add(viewBoxTime);
     	viewPanelScoreTime.add(Box.createVerticalStrut(200));
     	
-    	algo.setForeground(new Color(1,133,94));
-    	viewAlgoGame.setForeground(new Color(1,133,94));
+    	algo.setForeground(new Color(105, 4, 4));
+    	viewAlgoGame.setForeground(new Color(105, 4, 4));
     	level.setForeground(Color.WHITE);
     	Tplayer.setForeground(Color.GRAY);
     	this.viewTurnPlayer.setForeground(Color.GRAY);
@@ -272,7 +270,7 @@ public class BoardView extends JFrame {
     	this.viewScorePlayerBlack.setForeground(Color.WHITE);
     	this.viewScorePlayerWhite.setForeground(Color.WHITE);
     	viewLabelMoveDuration.setForeground(Color.WHITE);
-    	viewPanelScoreTime.setBackground(new Color(102,51,0));
+    	viewPanelScoreTime.setBackground(new Color(16, 239, 28));
     	viewPanelScoreTime.setOpaque(true);
     	time.setForeground(Color.RED);
     }
@@ -390,8 +388,8 @@ public class BoardView extends JFrame {
 	            	 viewBoardGame[i][j].setIcon(ImageView.viewWHITEState);
 	             }
                                             
-               viewBoardGame[i][j].setBackground(new Color(1,133,94));
-               this.viewPanelGame.setBackground(new Color(1,133,94));
+               viewBoardGame[i][j].setBackground(new Color(105, 4, 4));
+               this.viewPanelGame.setBackground(new Color(105, 4, 4));
                
                viewBoardGame[i][j].removeMouseListener(new BoardListener(this.play));
                viewBoardGame[i][j].addMouseListener(new BoardListener(this.play));

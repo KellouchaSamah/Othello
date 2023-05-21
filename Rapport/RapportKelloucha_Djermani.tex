@@ -78,24 +78,96 @@ Notre travail consiste à développer le jeu OTHELLO en utilisant différentes s
 	\item	Le joueur qui a le plus de pions de sa couleur sur le plateau à la fin de la partie est déclaré vainqueur.
 \end{itemize}
 \subsection{Les Algorithmes demandés}
-	    \paragraph{Min-Max :} Cet algorithme est une technique de recherche de l'arbre de jeu pour les jeux à deux joueurs. Il consiste à maximiser le gain possible du joueur en minimisant le gain possible de son adversaire. Pour chaque coup possible, il explore tous les coups suivants possibles et évalue le score obtenu pour le joueur en question. Ensuite, il choisit le coup qui maximise le score pour le joueur.
+	    \paragraph{Min-Max [\ref{Algorithme MINIMAX}] :} Cet algorithme est une technique de recherche de l'arbre de jeu pour les jeux à deux joueurs. Il consiste à maximiser le gain possible du joueur en minimisant le gain possible de son adversaire. Pour chaque coup possible, il explore tous les coups suivants possibles et évalue le score obtenu pour le joueur en question. Ensuite, il choisit le coup qui maximise le score pour le joueur .
+	    
+	    
+	    
+	    \begin{figure}[H]
+	    	\centering
+	    	\includegraphics[scale=0.55]{img/minimax}
+	    	\caption{Algorithme MINIMAX }
+	    	\label{Algorithme MINIMAX}
+	    \end{figure}
 	
-	\paragraph{Alpha-Beta :} C'est une amélioration de l'algorithme Min-Max qui permet de réduire considérablement le nombre de nœuds évalués. Au lieu d'explorer tous les nœuds, l'algorithme Alpha-Beta utilise une technique de coupure pour éviter d'explorer des branches qui ne contribuent pas au résultat final. L'algorithme utilise deux valeurs, alpha et beta, pour suivre les valeurs minimales et maximales possibles.
+	\paragraph{Alpha-Beta [\ref{Algorithme ALPHABETA}] :} C'est une amélioration de l'algorithme Min-Max qui permet de réduire considérablement le nombre de nœuds évalués. Au lieu d'explorer tous les nœuds, l'algorithme Alpha-Beta utilise une technique de coupure pour éviter d'explorer des branches qui ne contribuent pas au résultat final. L'algorithme utilise deux valeurs, alpha et beta, pour suivre les valeurs minimales et maximales possibles.
+	
+	   
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.7]{img/alphabeta}
+		\caption{Algorithme ALPHABETA }
+		\label{Algorithme ALPHABETA}
+	\end{figure}
+	
 	
 		
-\paragraph{	NégaAlphaBeta : }C'est une variation de l'algorithme Alpha-Beta qui est souvent utilisée pour les jeux à somme nulle comme l'othello. Il est similaire à l'algorithme Alpha-Beta, mais utilise une valeur de score négative pour le joueur adverse.
+\paragraph{	NégaAlphaBeta [\ref{Algorithme NégaAlphaBeta}]: }C'est une variation de l'algorithme Alpha-Beta qui est souvent utilisée pour les jeux à somme nulle comme l'othello. Il est similaire à l'algorithme Alpha-Beta, mais utilise une valeur de score négative pour le joueur adverse.
 	
-	\paragraph{SSS* :} C'est une amélioration de l'algorithme A* qui utilise une liste ouverte de nœuds pour stocker les nœuds qui doivent encore être évalués. Contrairement à l'algorithme A*, qui utilise une file de priorité, SSS* utilise une liste liée. Cela permet de réduire le temps de calcul en évitant les opérations de tri nécessaires pour maintenir l'ordre de priorité dans une file de priorité.
+	
+		   
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.7]{img/negaalphabeta}
+		\caption{Algorithme NégaAlphaBeta }
+		\label{Algorithme NégaAlphaBeta}
+	\end{figure}
+	
+	\paragraph{SSS* [\ref{Algorithme SSS*}] :} C'est une amélioration de l'algorithme A* qui utilise une liste ouverte de nœuds pour stocker les nœuds qui doivent encore être évalués. Contrairement à l'algorithme A*, qui utilise une file de priorité, SSS* utilise une liste liée. Cela permet de réduire le temps de calcul en évitant les opérations de tri nécessaires pour maintenir l'ordre de priorité dans une file de priorité.
+	
+		\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.7]{img/sss1}
+	\end{figure}
+		\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.7]{img/sss2}
+		\caption{Algorithme SSS* }
+		\label{Algorithme SSS*}
+	\end{figure}
 	
 \paragraph{	A* :} C'est un algorithme de recherche de chemin qui peut être utilisé pour trouver le chemin optimal entre deux points dans un graphe. Il utilise une fonction heuristique pour estimer le coût du chemin restant à partir du nœud actuel. L'algorithme explore les nœuds en fonction de leur coût total, qui est la somme du coût actuel et du coût heuristique estimé.
 
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{img/A}
+	\caption{Algorithme A* }
+	\label{Algorithme A*}
+\end{figure}
+
+
 
 	
 
 
-	\section{Étapes suivis pour la réalisation du projet}
+\section{Document technique}
 	
-	
+		\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.7]{img/othello_startAlgo.jpg}
+		\caption{Choix d'algorithme }
+		\label{Algo}
+	\end{figure}
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{img/othello_startNiveau.jpg}
+	\caption{Choix de niveau }
+	\label{niveau}
+\end{figure}
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{img/othello_startMode.jpg}
+	\caption{Choix de mode }
+	\label{mode}
+\end{figure}
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{img/othelloStartJoueur.png}
+	\caption{Choix de type }
+	\label{joueur}
+\end{figure}
 	
 	
 	
@@ -126,5 +198,5 @@ Notre travail consiste à développer le jeu OTHELLO en utilisant différentes s
 	
 	%---------------------------------Fin de rapport---------------------------
 	\section{Conclusion}
-En conclusion, notre projet a consisté à réaliser le jeu Othello en Java en utilisant différents algorithmes de stratégies de jeu tels que MinMax, AlphaBeta, A*, NegAlphaBeta, et SSS*. Nous avons implémenté les règles du jeu et avons offert la possibilité aux joueurs de choisir leur niveau de difficulté ainsi que leur mode de jeu (joueur contre joueur, joueur contre ordinateur, ordinateur contre ordinateur). Pour être efficaces, nous avons basé l'utilisation de ces algorithmes sur une analyse correcte du jeu. Ce projet nous a permis de renforcer nos compétences en programmation orientée objet ainsi que notre compréhension de l'utilisation des algorithmes pour la résolution de problèmes.
+En conclusion, notre projet a consisté à réaliser le jeu Othello en Java en utilisant différents algorithmes de stratégies de jeu tels que MinMax, AlphaBeta, NegAlphaBeta, SSS* et A* malheureusement on à réussi à implémenté que les 4 premiers . Nous avons implémenté les règles du jeu et avons offert la possibilité aux joueurs de choisir leur niveau de difficulté ainsi que leur mode de jeu \textbf{(joueur contre joueur, joueur contre ordinateur, ordinateur contre ordinateur)}. Pour être efficaces, nous avons basé l'utilisation de ces algorithmes sur une analyse correcte du jeu. Ce projet nous a permis de renforcer nos compétences en programmation orientée objet ainsi que notre compréhension de l'utilisation des algorithmes pour la résolution de problèmes.
 \end{document}
