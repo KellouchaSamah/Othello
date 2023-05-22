@@ -309,7 +309,7 @@ public class Play {
 						if (controllerbordview.getviewAlgoGame().getText().toString() == "NEGAMAX") {
 							bestMove = negamaxALG(controllerplayBoard.getDifficulte(controllerbordview.getviewLevelGame().getText()),
 									new Player(ControllerplayerWhite), new Player(ControllerplayerBlack));
-						} else if (controllerbordview.getviewAlgoGame().getText().toString() == "NEGAALPHABETA") {
+						} else if (controllerbordview.getviewAlgoGame().getText().toString() == "NEGA_A_B") {
 							bestMove = negaalphabetaALG(controllerplayBoard.getDifficulte(controllerbordview.getviewLevelGame().getText()),
 									new Player(ControllerplayerWhite), new Player(ControllerplayerBlack));
 						}

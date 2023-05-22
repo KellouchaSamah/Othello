@@ -206,7 +206,7 @@ public class BoardView extends JFrame {
     	JLabel Tplayer = new JLabel("Turn : ");
     	
     	JLabel level = new JLabel("Level : ");
-    	JLabel algo  = new JLabel("");
+    	JLabel algo  = new JLabel("ALGO:\n");
     	
     	Box viewBoxMoveDuration = Box.createHorizontalBox();
     	Box viewBoxTime         = Box.createHorizontalBox();

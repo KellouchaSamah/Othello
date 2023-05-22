@@ -1,13 +1,40 @@
 \babel@toc {french}{}\relax 
 \contentsline {section}{\numberline {1}Introduction}{4}{}%
-\contentsline {section}{\numberline {2}Travail demandé}{5}{}%
-\contentsline {subsection}{\numberline {2.1}Les règles de jeu Othello}{5}{}%
-\contentsline {subsection}{\numberline {2.2}Les Algorithmes demandés}{5}{}%
-\contentsline {paragraph}{Min-Max [\ref {Algorithme MINIMAX}] :}{5}{}%
-\contentsline {paragraph}{NégaMax[\ref {Algorithme NégaMINIMAX}]:}{6}{}%
-\contentsline {paragraph}{Alpha-Beta [\ref {Algorithme ALPHABETA}] :}{6}{}%
-\contentsline {paragraph}{ NégaAlphaBeta [\ref {Algorithme NégaAlphaBeta}]: }{7}{}%
-\contentsline {paragraph}{SSS* [\ref {Algorithme SSS*}] :}{8}{}%
-\contentsline {paragraph}{ A* :}{8}{}%
-\contentsline {section}{\numberline {3}Document technique}{9}{}%
-\contentsline {section}{\numberline {4}Conclusion}{11}{}%
+\contentsline {subsection}{\numberline {1.1}Présentation du jeu Othello et de son contexte:}{4}{}%
+\contentsline {subsection}{\numberline {1.2}Objectifs du projet:}{4}{}%
+\contentsline {section}{\numberline {2}Analyse des besoins}{5}{}%
+\contentsline {subsection}{\numberline {2.1}Description des fonctionnalités principales du jeu Othello}{5}{}%
+\contentsline {paragraph}{Interface graphique conviviale :}{5}{}%
+\contentsline {paragraph}{Règles du jeu :}{5}{}%
+\contentsline {paragraph}{Modes de jeu :}{5}{}%
+\contentsline {paragraph}{Stratégies de jeu :}{5}{}%
+\contentsline {paragraph}{Aide et conseils :}{5}{}%
+\contentsline {subsection}{\numberline {2.2}Les règles de jeu Othello}{5}{}%
+\contentsline {section}{\numberline {3}Présentation de l'architecture générale du programme:}{6}{}%
+\contentsline {subsection}{\numberline {3.1}Model:}{6}{}%
+\contentsline {subsection}{\numberline {3.2}View:}{6}{}%
+\contentsline {subsection}{\numberline {3.3}Controller:}{6}{}%
+\contentsline {subsection}{\numberline {3.4}Strategy:}{6}{}%
+\contentsline {section}{\numberline {4}Les stratégies de jeu demandés}{7}{}%
+\contentsline {subsection}{\numberline {4.1}Min-Max [\ref {Algorithme MINIMAX}] :}{7}{}%
+\contentsline {subsection}{\numberline {4.2}NégaMax[\ref {Algorithme NégaMINIMAX}]:}{7}{}%
+\contentsline {subsection}{\numberline {4.3}Alpha-Beta [\ref {Algorithme ALPHABETA}] :}{8}{}%
+\contentsline {subsection}{\numberline {4.4}NégaAlphaBeta [\ref {Algorithme NégaAlphaBeta}]: }{8}{}%
+\contentsline {subsection}{\numberline {4.5}SSS* [\ref {Algorithme SSS*}] :}{9}{}%
+\contentsline {subsection}{\numberline {4.6}A* [\ref {Algorithme A*}] :}{10}{}%
+\contentsline {section}{\numberline {5}Implémentation des stratégies de jeu}{11}{}%
+\contentsline {subsection}{\numberline {5.1}MinMax}{11}{}%
+\contentsline {subsection}{\numberline {5.2}NégaMax}{11}{}%
+\contentsline {subsection}{\numberline {5.3}AlphaBeta}{11}{}%
+\contentsline {subsection}{\numberline {5.4}NégaAlphaBéta}{12}{}%
+\contentsline {subsection}{\numberline {5.5}SSS*}{12}{}%
+\contentsline {section}{\numberline {6}Document technique}{13}{}%
+\contentsline {subsection}{\numberline {6.1}Fenêtre de démarrage du jeu}{13}{}%
+\contentsline {subsection}{\numberline {6.2}Configurations du jeu}{15}{}%
+\contentsline {subsubsection}{\numberline {6.2.1}Configuration initial du jeu }{15}{}%
+\contentsline {subsubsection}{\numberline {6.2.2}Menu déroulant}{16}{}%
+\contentsline {subsubsection}{\numberline {6.2.3}Zone Partie}{17}{}%
+\contentsline {subsubsection}{\numberline {6.2.4}Zone du jeu principale}{17}{}%
+\contentsline {paragraph}{Affichage des cases conviviales :}{17}{}%
+\contentsline {paragraph}{Gestion des cases non conviviales :}{17}{}%
+\contentsline {section}{\numberline {7}Conclusion}{18}{}%

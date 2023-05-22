@@ -46,11 +46,4 @@ public class SSSStar {
 
         return bestSum;
     }
-
-    public static void main(String[] args) {
-        int[] items = {1, 3, 5, 7, 9};
-        int targetSum = 12;
-        int bestSum = sssstar(items, targetSum);
-        System.out.println("La somme maximale des éléments dans un sous-ensemble est : " + bestSum);
-    }
 }

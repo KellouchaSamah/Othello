@@ -88,7 +88,7 @@ public class WindowStart extends JDialog {
 		negamax = new JRadioButton("NÉGAMAX");
 		alphabeta = new JRadioButton("ALPHABETA");
 		sss = new JRadioButton("SSS*");
-		negaalphabeta = new JRadioButton("NÉGAALPHABETA");
+		negaalphabeta = new JRadioButton("NEGA_A_B");
 		random.setBackground(Color.white);
 		minimax.setBackground(Color.white);
 		alphabeta.setBackground(Color.white);
@@ -97,10 +97,12 @@ public class WindowStart extends JDialog {
 		negaalphabeta.setBackground(Color.white);
 		panAlgo.add(random);
 		panAlgo.add(minimax);
-		panAlgo.add(alphabeta);
-		panAlgo.add(sss);
 		panAlgo.add(negamax);
+		panAlgo.add(alphabeta);
 		panAlgo.add(negaalphabeta);
+		panAlgo.add(sss);
+
+
 
 		JPanel content = new JPanel(new GridLayout(1, 4));
 		content.setBackground(Color.white);
@@ -314,7 +316,7 @@ public class WindowStart extends JDialog {
 				} else if (negamax.isSelected()){
 					play.setAlgoGame("NEGAMAX");
 				} else if (negaalphabeta.isSelected()) {
-					play.setAlgoGame("NEGAALPHABETA");
+					play.setAlgoGame("NEGA_A_B");
 
 				}
 				dispose();
