@@ -4,9 +4,10 @@
 \contentsline {subsection}{\numberline {2.1}Les règles de jeu Othello}{5}{}%
 \contentsline {subsection}{\numberline {2.2}Les Algorithmes demandés}{5}{}%
 \contentsline {paragraph}{Min-Max [\ref {Algorithme MINIMAX}] :}{5}{}%
+\contentsline {paragraph}{NégaMax[\ref {Algorithme NégaMINIMAX}]:}{6}{}%
 \contentsline {paragraph}{Alpha-Beta [\ref {Algorithme ALPHABETA}] :}{6}{}%
 \contentsline {paragraph}{ NégaAlphaBeta [\ref {Algorithme NégaAlphaBeta}]: }{7}{}%
-\contentsline {paragraph}{SSS* [\ref {Algorithme SSS*}] :}{7}{}%
+\contentsline {paragraph}{SSS* [\ref {Algorithme SSS*}] :}{8}{}%
 \contentsline {paragraph}{ A* :}{8}{}%
 \contentsline {section}{\numberline {3}Document technique}{9}{}%
-\contentsline {section}{\numberline {4}Conclusion}{10}{}%
+\contentsline {section}{\numberline {4}Conclusion}{11}{}%

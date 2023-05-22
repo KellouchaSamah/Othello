@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.11.24)  20 MAY 2023 18:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.11.24)  22 MAY 2023 18:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -716,10 +716,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [5]
-<img/alphabeta.png, id=47, 448.67625pt x 416.55624pt>
+<img/negamax.png, id=47, 641.39626pt x 324.21124pt>
+File: img/negamax.png Graphic file (type png)
+<use img/negamax.png>
+Package pdftex.def Info: img/negamax.png  used on input line 95.
+(pdftex.def)             Requested size: 352.76903pt x 178.31673pt.
+<img/alphabeta.png, id=48, 448.67625pt x 416.55624pt>
 File: img/alphabeta.png Graphic file (type png)
 <use img/alphabeta.png>
-Package pdftex.def Info: img/alphabeta.png  used on input line 97.
+Package pdftex.def Info: img/alphabeta.png  used on input line 108.
 (pdftex.def)             Requested size: 314.07123pt x 291.58737pt.
 
 
@@ -730,41 +735,56 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[6 <./img/minimax.png> <./img/alphabeta.png>]
-<img/negaalphabeta.png, id=51, 448.67625pt x 334.24875pt>
+[6 <./img/minimax.png> <./img/negamax.png>]
+<img/negaalphabeta.png, id=52, 448.67625pt x 334.24875pt>
 File: img/negaalphabeta.png Graphic file (type png)
 <use img/negaalphabeta.png>
-Package pdftex.def Info: img/negaalphabeta.png  used on input line 110.
+Package pdftex.def Info: img/negaalphabeta.png  used on input line 121.
 (pdftex.def)             Requested size: 314.07123pt x 233.97252pt.
-<img/sss1.png, id=52, 447.6725pt x 385.44pt>
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[7 <./img/alphabeta.png> <./img/negaalphabeta.png>]
+<img/sss1.png, id=57, 447.6725pt x 385.44pt>
 File: img/sss1.png Graphic file (type png)
 <use img/sss1.png>
-Package pdftex.def Info: img/sss1.png  used on input line 119.
+Package pdftex.def Info: img/sss1.png  used on input line 130.
 (pdftex.def)             Requested size: 313.3686pt x 269.80615pt.
-<img/sss2.png, id=53, 451.6875pt x 293.095pt>
+<img/sss2.png, id=58, 451.6875pt x 293.095pt>
 File: img/sss2.png Graphic file (type png)
 <use img/sss2.png>
-Package pdftex.def Info: img/sss2.png  used on input line 123.
+Package pdftex.def Info: img/sss2.png  used on input line 134.
 (pdftex.def)             Requested size: 316.17908pt x 205.16508pt.
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[7 <./img/negaalphabeta.png> <./img/sss1.png>]
-<img/A.png, id=58, 504.88625pt x 318.18875pt>
+<img/A.png, id=59, 504.88625pt x 318.18875pt>
 File: img/A.png Graphic file (type png)
 <use img/A.png>
-Package pdftex.def Info: img/A.png  used on input line 132.
+Package pdftex.def Info: img/A.png  used on input line 143.
 (pdftex.def)             Requested size: 353.41795pt x 222.73059pt.
-<img/othello_startAlgo.jpg, id=59, 551.05875pt x 248.93pt>
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[8 <./img/sss1.png> <./img/sss2.png>]
+<img/othello_startAlgo.jpg, id=63, 551.05875pt x 248.93pt>
 File: img/othello_startAlgo.jpg Graphic file (type jpg)
 <use img/othello_startAlgo.jpg>
-Package pdftex.def Info: img/othello_startAlgo.jpg  used on input line 146.
+Package pdftex.def Info: img/othello_startAlgo.jpg  used on input line 157.
+(pdftex.def)             Requested size: 385.73848pt x 174.2498pt.
+<img/othello_startNiveau.jpg, id=64, 551.05875pt x 248.93pt>
+File: img/othello_startNiveau.jpg Graphic file (type jpg)
+<use img/othello_startNiveau.jpg>
+Package pdftex.def Info: img/othello_startNiveau.jpg  used on input line 164.
 (pdftex.def)             Requested size: 385.73848pt x 174.2498pt.
 
 
@@ -775,21 +795,16 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[8 <./img/sss2.png> <./img/A.png>]
-<img/othello_startNiveau.jpg, id=63, 551.05875pt x 248.93pt>
-File: img/othello_startNiveau.jpg Graphic file (type jpg)
-<use img/othello_startNiveau.jpg>
-Package pdftex.def Info: img/othello_startNiveau.jpg  used on input line 153.
-(pdftex.def)             Requested size: 385.73848pt x 174.2498pt.
-<img/othello_startMode.jpg, id=64, 551.05875pt x 248.93pt>
+[9 <./img/A.png> <./img/othello_startAlgo.jpg>]
+<img/othello_startMode.jpg, id=68, 551.05875pt x 248.93pt>
 File: img/othello_startMode.jpg Graphic file (type jpg)
 <use img/othello_startMode.jpg>
-Package pdftex.def Info: img/othello_startMode.jpg  used on input line 160.
+Package pdftex.def Info: img/othello_startMode.jpg  used on input line 171.
 (pdftex.def)             Requested size: 385.73848pt x 174.2498pt.
-<img/othelloStartJoueur.png, id=65, 545.03625pt x 242.9075pt>
+<img/othelloStartJoueur.png, id=69, 545.03625pt x 242.9075pt>
 File: img/othelloStartJoueur.png Graphic file (type png)
 <use img/othelloStartJoueur.png>
-Package pdftex.def Info: img/othelloStartJoueur.png  used on input line 167.
+Package pdftex.def Info: img/othelloStartJoueur.png  used on input line 178.
 (pdftex.def)             Requested size: 381.52278pt x 170.03407pt.
 
 
@@ -800,8 +815,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[9 <./img/othello_startAlgo.jpg> <./img/othello_startNiveau.jpg> <./img/othello
-_startMode.jpg>] 
+[10 <./img/othello_startNiveau.jpg> <./img/othello_startMode.jpg> <./img/othell
+oStartJoueur.png>] 
 AED: lastpage setting LastPage
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -811,28 +826,28 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[10
+[11
 runsystem(makeindex -s RapportKelloucha_Djermani.ist -t RapportKelloucha_Djerma
 ni.glg -o RapportKelloucha_Djermani.gls RapportKelloucha_Djermani.glo)...execut
 ed safely (allowed).
 
- <./img/othelloStartJoueur.png>] (./RapportKelloucha_Djermani.aux) ) 
+] (./RapportKelloucha_Djermani.aux) ) 
 Here is how much of TeX's memory you used:
- 13294 strings out of 478287
- 237426 string characters out of 5849288
- 588218 words of memory out of 5000000
- 31253 multiletter control sequences out of 15000+600000
+ 13302 strings out of 478287
+ 237583 string characters out of 5849288
+ 588229 words of memory out of 5000000
+ 31260 multiletter control sequences out of 15000+600000
  502148 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  91i,17n,91p,1149b,518s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share
-/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/fonts/type1/public/lm/lmb
-x12.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/f
-onts/type1/public/lm/lmr12.pfb>
-Output written on RapportKelloucha_Djermani.pdf (10 pages, 497633 bytes).
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec
+.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts
+/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb>
+
+Output written on RapportKelloucha_Djermani.pdf (11 pages, 522286 bytes).
 PDF statistics:
- 88 PDF objects out of 1000 (max. 8388607)
- 46 compressed objects within 1 object stream
+ 92 PDF objects out of 1000 (max. 8388607)
+ 48 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 76 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)
 

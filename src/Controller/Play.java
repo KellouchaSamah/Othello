@@ -163,6 +163,11 @@ public class Play {
 		return alphabetaSTG.bestMove;
 	}
 
+	private int negaalphabetaALG(int difficulte, Player player, Player playerADV) {
+		NegaAlphaBetaStrategy negaAlphaBetaStrategy = new NegaAlphaBetaStrategy(controllerplayBoard, difficulte, player, playerADV, this);
+		negaAlphaBetaStrategy.executeAlgo();
+		return negaAlphaBetaStrategy.bestMove;
+	}
 
 	private int negamaxALG(int difficulte, Player player, Player playerADV) {
 		NegaMAXStrategy negamaxSTG = new NegaMAXStrategy(controllerplayBoard, difficulte, player, playerADV, this);
@@ -216,6 +221,9 @@ public class Play {
 					}else {
 						if (controllerbordview.getviewAlgoGame().getText().toString() == "NEGAMAX") {
 							bestMove = negamaxALG(controllerplayBoard.getDifficulte(controllerbordview.getviewLevelGame().getText()),
+									new Player(ControllerplayerBlack),new Player(ControllerplayerWhite));
+						} else if (controllerbordview.getviewAlgoGame().getText().toString() == "NEGAALPHABETA") {
+							bestMove = negaalphabetaALG(controllerplayBoard.getDifficulte(controllerbordview.getviewLevelGame().getText()),
 									new Player(ControllerplayerBlack),new Player(ControllerplayerWhite));
 						}
 					}
@@ -293,8 +301,20 @@ public class Play {
 					|| ((controllerbordview.getviewAlgoGame().getText().toString() == "ALPHABETA")&&(controllerbordview.getviewGameMade() != "AI vs AI"))){
 					bestMove = alphabetaALG(controllerplayBoard.getDifficulte(controllerbordview.getviewLevelGame().getText()),
 							new Player(ControllerplayerWhite), new Player(ControllerplayerBlack));
+				}else {
+					if (controllerbordview.getviewAlgoGame().getText().toString() == "SSS*") {
+						bestMove = sssALG(controllerplayBoard.getDifficulte(controllerbordview.getviewLevelGame().getText()),
+								new Player(ControllerplayerWhite), new Player(ControllerplayerBlack));
+					} else {
+						if (controllerbordview.getviewAlgoGame().getText().toString() == "NEGAMAX") {
+							bestMove = negamaxALG(controllerplayBoard.getDifficulte(controllerbordview.getviewLevelGame().getText()),
+									new Player(ControllerplayerWhite), new Player(ControllerplayerBlack));
+						} else if (controllerbordview.getviewAlgoGame().getText().toString() == "NEGAALPHABETA") {
+							bestMove = negaalphabetaALG(controllerplayBoard.getDifficulte(controllerbordview.getviewLevelGame().getText()),
+									new Player(ControllerplayerWhite), new Player(ControllerplayerBlack));
+						}
+					}
 				}
-				
 				Thread.sleep(2000) ;
 						
 				try {

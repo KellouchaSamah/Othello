@@ -23,7 +23,7 @@ import Model.Pawn;
 public class WindowStart extends JDialog {
 
 	private JLabel pawnLabel, levelLabel, madeLabel, algoLabel;
-	private JRadioButton black, white, easy, medium, hard, plVsAI, aiVsAI, plVsPL, random, minimax, alphabeta, sss, A;
+	private JRadioButton black, white, easy, negaalphabeta,medium, hard, plVsAI, aiVsAI, plVsPL, random, minimax, alphabeta, sss, negamax;
 	private Play play;
 
 	public WindowStart(JFrame parent, String title, boolean modal, Play play)  {
@@ -85,19 +85,22 @@ public class WindowStart extends JDialog {
 		panAlgo.setBorder(BorderFactory.createTitledBorder("Game Algorithm"));
 		random = new JRadioButton("RANDOM");
 		minimax = new JRadioButton("MINIMAX");
+		negamax = new JRadioButton("NÉGAMAX");
 		alphabeta = new JRadioButton("ALPHABETA");
 		sss = new JRadioButton("SSS*");
-		A = new JRadioButton("A*");
+		negaalphabeta = new JRadioButton("NÉGAALPHABETA");
 		random.setBackground(Color.white);
 		minimax.setBackground(Color.white);
 		alphabeta.setBackground(Color.white);
 		sss.setBackground(Color.white);
-		A.setBackground(Color.white);
+		negamax.setBackground(Color.white);
+		negaalphabeta.setBackground(Color.white);
 		panAlgo.add(random);
 		panAlgo.add(minimax);
 		panAlgo.add(alphabeta);
 		panAlgo.add(sss);
-		panAlgo.add(A);
+		panAlgo.add(negamax);
+		panAlgo.add(negaalphabeta);
 
 		JPanel content = new JPanel(new GridLayout(1, 4));
 		content.setBackground(Color.white);
@@ -115,7 +118,8 @@ public class WindowStart extends JDialog {
 					sss.setEnabled(false);
 					minimax.setEnabled(false);
 					alphabeta.setEnabled(false);
-					A.setEnabled(false);
+					negamax.setEnabled(false);
+					negaalphabeta.setEnabled(false);
 
 
 				}
@@ -128,7 +132,9 @@ public class WindowStart extends JDialog {
 					sss.setEnabled(false);
 					minimax.setEnabled(false);
 					alphabeta.setEnabled(false);
-					A.setEnabled(false);
+					negamax.setEnabled(false);
+					negaalphabeta.setEnabled(false);
+
 
 
 				}
@@ -141,7 +147,9 @@ public class WindowStart extends JDialog {
 					sss.setEnabled(false);
 					random.setEnabled(false);
 					alphabeta.setEnabled(false);
-					A.setEnabled(false);
+					negamax.setEnabled(false);
+					negaalphabeta.setEnabled(false);
+
 
 
 				}
@@ -154,20 +162,42 @@ public class WindowStart extends JDialog {
 					random.setEnabled(false);
 					minimax.setEnabled(false);
 					alphabeta.setEnabled(false);
-					A.setEnabled(false);
+					negamax.setEnabled(false);
+					negaalphabeta.setEnabled(false);
+
 
 
 				}
 			}
 		});
-		A.addItemListener(new ItemListener() {
+		negamax.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				if (A.isSelected()) {
+				if (negamax.isSelected()) {
 					alphabeta.setEnabled(false);
 					random.setEnabled(false);
 					minimax.setEnabled(false);
 					alphabeta.setEnabled(false);
 					sss.setEnabled(false);
+					negaalphabeta.setEnabled(false);
+
+
+
+				}
+			}
+		});
+
+
+
+		negaalphabeta.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (negaalphabeta.isSelected()) {
+					alphabeta.setEnabled(false);
+					random.setEnabled(false);
+					minimax.setEnabled(false);
+					alphabeta.setEnabled(false);
+					sss.setEnabled(false);
+					negamax.setEnabled(false);
+
 
 
 				}
@@ -281,8 +311,11 @@ public class WindowStart extends JDialog {
 					play.setAlgoGame("SSS*");
 				} else if (minimax.isSelected()){
 					play.setAlgoGame("MINIMAX");
-				} else {
-					play.setAlgoGame("RANDOM");
+				} else if (negamax.isSelected()){
+					play.setAlgoGame("NEGAMAX");
+				} else if (negaalphabeta.isSelected()) {
+					play.setAlgoGame("NEGAALPHABETA");
+
 				}
 				dispose();
 			}

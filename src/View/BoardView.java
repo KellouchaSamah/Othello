@@ -89,7 +89,7 @@ public class BoardView extends JFrame {
         this.getContentPane().add(viewMenuBar, BorderLayout.SOUTH);
 
             
-        this.setTitle("Notre Othello Rouen");
+        this.setTitle("Othello Game 2023 M1 GIL");
         this.viewPanelGame.setMinimumSize(new Dimension(viewSizePanelGame + 6, viewSizePanelGame + 25));
         this.viewPanelGame.setMaximumSize(new Dimension(viewSizePanelGame + 6, viewSizePanelGame + 25));
         
@@ -192,8 +192,8 @@ public class BoardView extends JFrame {
     	
     	viewLabelFooter.setForeground(Color.WHITE);
     	viewPanelFooter.setOpaque(true);
-    	this.viewPanelFooter.setBackground(new Color(16, 239, 28));
-    	Border viewBorderPanelGame = BorderFactory.createLineBorder(new Color(16, 239, 28), 10);
+    	this.viewPanelFooter.setBackground(new Color(95, 101, 95));
+    	Border viewBorderPanelGame = BorderFactory.createLineBorder(new Color(95, 101, 95), 10);
         this.viewPanelFooter.setBorder(viewBorderPanelGame);
     }
     
@@ -222,7 +222,7 @@ public class BoardView extends JFrame {
     	viewBoxMoveDuration.add(viewLabelMoveDuration);
     	viewBoxMoveDuration.add(Box.createHorizontalStrut(5));
     	viewBoxTime.add(time);
-    	viewBoxMoveDuration.setBackground(new Color(16, 239, 28));
+    	viewBoxMoveDuration.setBackground(new Color(95, 101, 95));
     	
     	viewBoxBlack.add(viewIconPlayerBlack);
     	viewBoxBlack.add(Box.createHorizontalStrut(18));
@@ -270,7 +270,7 @@ public class BoardView extends JFrame {
     	this.viewScorePlayerBlack.setForeground(Color.WHITE);
     	this.viewScorePlayerWhite.setForeground(Color.WHITE);
     	viewLabelMoveDuration.setForeground(Color.WHITE);
-    	viewPanelScoreTime.setBackground(new Color(16, 239, 28));
+    	viewPanelScoreTime.setBackground(new Color(95, 101, 95));
     	viewPanelScoreTime.setOpaque(true);
     	time.setForeground(Color.RED);
     }
